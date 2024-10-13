@@ -26,5 +26,6 @@ pip install PyMuPDF
 python PDF2IMG.py -f your-file.pdf
 ```
 ## Why I Created This?
-I wanted to extract images from a PDF 📄 but found that most online tools were either filled with ads 📢, had limited features ⚙️, or required too many permissions 🔒. To avoid these hassles and take control 💪, I decided to create a simple Python script 🐍 to extract full pages as images 🖼️.
+I wanted to extract images from a PDF 📄 but found that most online tools were either filled with ads 📢, had limited features ⚙️, or required too many permissions 🔒. To avoid these hassles and take control 💪, I decided to create a simple Python script 🐍 to extract full pages as images 🖼️. There's so much more to add, like a function to extract only the desired page or pages, but I'll do it later ⏳.
+
 
