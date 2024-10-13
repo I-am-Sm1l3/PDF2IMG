@@ -24,6 +24,7 @@ pip install PyMuPDF
 ## Usage:
 ```bash
 python PDF2IMG.py -f your-file.pdf
+```
 
 
 
