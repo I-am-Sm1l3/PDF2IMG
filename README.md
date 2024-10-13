@@ -11,8 +11,6 @@ This project is a simple Python script that extracts each page of a PDF document
 - **Extract Pages**: Convert all pages of a PDF to PNG images.
 - **Easy to Use**: Just specify the PDF file and run the script.
 - **Organized Output**: All images are saved in a dedicated folder.
-## Usage:
-python PDF2IMG.py -f your-file.pdf
 
 ## Requirements
 
@@ -22,4 +20,10 @@ You can install PyMuPDF using pip:
 
 ```bash
 pip install PyMuPDF
+```
+## Usage:
+```bash
+python PDF2IMG.py -f your-file.pdf
+
+
 
