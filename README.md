@@ -4,7 +4,7 @@ The funny thing is that i tried compiling this script and GUESS!!! how the compi
 
 ## Overview
 
-This project is a simple Python script that extracts each page of a PDF document and saves it as an individual PNG image. It uses the **PyMuPDF** library (imported as `fitz`) for handling PDF files.
+This is a simple Python script that extracts each page of a PDF document and saves it as an individual PNG image. It uses the **PyMuPDF** library (imported as `fitz`) for handling PDF files.
 
 ## Features
 
