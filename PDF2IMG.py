@@ -2,7 +2,7 @@ import fitz
 import argparse
 import os
 
-# ASCII Art for Heart and PDF Created this Using https://patorjk.com/software/taag/
+# ASCII Art for PDF. Created this Using https://patorjk.com/software/taag/
 ascii_art = r"""
                      ,--,                                                                                              
                 ,---.'|       ,----..                                 ,-.----.                                       
