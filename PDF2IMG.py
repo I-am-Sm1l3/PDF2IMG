@@ -1,31 +1,34 @@
-import fitz
+"""Convert PDF pages to images."""
 import os
+import fitz
+
 
 # ASCII Art for PDF. Created this Using https://patorjk.com/software/taag/
-ascii_art = r"""
-                     ,--,                                                                                              
-                ,---.'|       ,----..                                 ,-.----.                                       
-   ,---,        |   | :      /   /   \                  ,---,.        \    /  \      ,---,        ,---,.             
-,`--.' |        :   : |     /   .     :        ,---.  ,'  .' |        |   :    \   .'  .' `\    ,'  .' |             
-|   :  :        |   ' :    .   /   ;.  \      /__./|,---.'   |        |   |  .\ :,---.'     \ ,---.'   |             
-:   |  '        ;   ; '   .   ;   /  ` ; ,---.;  ; ||   |   .'        .   :  |: ||   |  .`\  ||   |   .'  .--.--.    
-|   :  |        '   | |__ ;   |  ; \ ; |/___/ \  | |:   :  |-,        |   |   \ ::   : |  '  |:   :  :   /  /    '   
-'   '  ;        |   | :.'||   :  | ; | '\   ;  \ ' |:   |  ;/|        |   : .   /|   ' '  ;  ::   |  |-,|  :  /`./   
-|   |  |        '   :    ;.   |  ' ' ' : \   \  \: ||   :   .'        ;   | |`-' '   | ;  .  ||   :  ;/||  :  ;_     
-'   :  ;        |   |  ./ '   ;  \; /  |  ;   \  ' .|   |  |-,        |   | ;    |   | :  |  '|   |   .' \  \    `.  
-|   |  '        ;   : ;    \   \  ',  /    \   \   ''   :  ;/|        :   ' |    '   : | /  ; '   :  '    `----.   \ 
-'   :  |        |   ,/      ;   :    /      \   `  ;|   |    \        :   : :    |   | '` ,/  |   |  |   /  /`--'  / 
-;   |.'         '---'        \   \ .'        :   \ ||   :   .'        |   | :    ;   :  .'    |   :  \  '--'.     /  
-'---'                         `---`           '---" |   | ,'          `---'.|    |   ,.'      |   | ,'    `--'---'   
-                                                    `----'              `---`    '---'        `----'                 
-                                                                                                                                      
+ASCII_ART = r"""
+                     ,--,
+                ,---.'|       ,----..                                 ,-.----.
+   ,---,        |   | :      /   /   \                  ,---,.        \    /  \      ,---,        ,---,.
+,`--.' |        :   : |     /   .     :        ,---.  ,'  .' |        |   :    \   .'  .' `\    ,'  .' |
+|   :  :        |   ' :    .   /   ;.  \      /__./|,---.'   |        |   |  .\ :,---.'     \ ,---.'   |
+:   |  '        ;   ; '   .   ;   /  ` ; ,---.;  ; ||   |   .'        .   :  |: ||   |  .`\  ||   |   .'  .--.--.
+|   :  |        '   | |__ ;   |  ; \ ; |/___/ \  | |:   :  |-,        |   |   \ ::   : |  '  |:   :  :   /  /    '
+'   '  ;        |   | :.'||   :  | ; | '\   ;  \ ' |:   |  ;/|        |   : .   /|   ' '  ;  ::   |  |-,|  :  /`./
+|   |  |        '   :    ;.   |  ' ' ' : \   \  \: ||   :   .'        ;   | |`-' '   | ;  .  ||   :  ;/||  :  ;_
+'   :  ;        |   |  ./ '   ;  \; /  |  ;   \  ' .|   |  |-,        |   | ;    |   | :  |  '|   |   .' \  \    `.
+|   |  '        ;   : ;    \   \  ',  /    \   \   ''   :  ;/|        :   ' |    '   : | /  ; '   :  '    `----.   \
+'   :  |        |   ,/      ;   :    /      \   `  ;|   |    \        :   : :    |   | '` ,/  |   |  |   /  /`--'  /
+;   |.'         '---'        \   \ .'        :   \ ||   :   .'        |   | :    ;   :  .'    |   :  \  '--'.     /
+'---'                         `---`           '---" |   | ,'          `---'.|    |   ,.'      |   | ,'    `--'---'
+                                                    `----'              `---`    '---'        `----'
+
 """
 
-print(ascii_art)
+print(ASCII_ART)
 print("Usage: Enter pdf path and page number.")
 print("To extract all pages, type 'all'.")
 
 def extract_pages_as_images(input_pdf, page_to_find=None):
+    """Extract specified pages (or all) from a PDF as images."""
     doc = fitz.open(input_pdf)
     output_dir = os.path.splitext(input_pdf)[0] + "_images"
     if not os.path.exists(output_dir):
@@ -46,7 +49,6 @@ def extract_pages_as_images(input_pdf, page_to_find=None):
                     pix.save(os.path.join(output_dir, f"page_{page_to_find}.png"))
                     found = True
                     break
-            
             # If label not found, try physical page number
             if not found:
                 if page_to_find < 1 or page_to_find > total_pages:
@@ -65,10 +67,10 @@ def extract_pages_as_images(input_pdf, page_to_find=None):
                 pix.save(os.path.join(output_dir, f"page_{page_num}.png"))
     finally:
         doc.close()
-        
     return output_dir
 
 def main():
+    """Handle user input and run PDF-to-image conversion."""
     while True:
         pdf = input("PDF path: ")
         if pdf and os.path.exists(pdf) and pdf.lower().endswith('.pdf'):
@@ -85,11 +87,10 @@ def main():
             break
         except ValueError:
             continue
-    
     try:
         out_dir = extract_pages_as_images(pdf, page_to_find=page_num)
         print(f"Done -> {out_dir}")
-    except Exception as e:
+    except (FileNotFoundError, ValueError) as e:
         print(str(e))
 
 if __name__ == "__main__":
