@@ -75,7 +75,7 @@ def main():
         pdf = input("PDF path: ")
         if pdf and os.path.exists(pdf) and pdf.lower().endswith('.pdf'):
             break
-        print("Invalid file")
+        print("Invalid Input")
 
     while True:
         page = input("Page number or 'all': ").lower()
@@ -95,3 +95,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
